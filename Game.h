@@ -11,7 +11,7 @@ class Game
 		Game();
 		virtual ~Game();
 
-		bool Init(const char* title, int x ,int y, int w, int h, Uint32 flags);
+		virtual bool Init(const char* title, int x ,int y, int w, int h, Uint32 flags);
 		void Run();
 		void Update();
 		virtual void Frame();
