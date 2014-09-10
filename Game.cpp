@@ -49,6 +49,19 @@ void Game::Frame()
 	Update();
 }
 
+void Game::SetCamera(double posx, double posy, double posz, double dirx, double diry, double dirz, double upx, double upy, double upz)
+{
+	gluLookAt(posx, posy, posz, dirx, diry, dirz, upx, upy, upz);
+}
+
+void Game::SetPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar)
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(fovy, aspect, zNear, zFar);
+	
+}
+
 void Game::Run()
 {
 	SDL_Event e;

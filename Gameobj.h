@@ -9,6 +9,8 @@ class GameObj :public Game
 		virtual ~GameObj();
 
 		bool Init(const char* title, int x, int y, int w, int h, Uint32 flags);
+		void SetPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+		void SetCamera(double posx, double posy, double posz, double dirx, double diry, double dirz, double upx, double upy, double upz);
 		void Frame();
 };
 #endif
