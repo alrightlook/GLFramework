@@ -2,7 +2,7 @@
 #define GLFRAMEWORK_HEADER
 
 #include <SDL.h>
-#include <SDL_opengl.h>
+#include <GL/glew.h>
 #include <iostream>
 #include <GL/glu.h>
 
@@ -11,6 +11,7 @@ class Game
 	public:
 		Game();
 		virtual ~Game();
+		virtual void LoadResource();
 
 		virtual bool Init(const char* title, int x ,int y, int w, int h, Uint32 flags);
 		virtual void SetPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);

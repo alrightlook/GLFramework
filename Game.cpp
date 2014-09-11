@@ -7,6 +7,11 @@ Game::Game()
 	m_MainGLContext = 0;
 }
 
+void Game::LoadResource()
+{
+
+}
+
 Game::~Game()
 {
 	SDL_GL_DeleteContext(m_MainGLContext);
