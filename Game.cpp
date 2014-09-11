@@ -12,6 +12,13 @@ Game::~Game()
 	SDL_GL_DeleteContext(m_MainGLContext);
 	SDL_DestroyWindow(m_MainWindow);
 }
+void Game::Quit()
+{
+	m_bQuit = true;
+}
+void Game::KeyEvent(SDL_Event* e)
+{
+}
 
 bool Game::Init(const char* title, int x,int y, int w, int h, Uint32 flags)
 {
@@ -70,6 +77,9 @@ void Game::Run()
 		if( SDL_PollEvent(&e)) {
 			if( e.type == SDL_QUIT) {
 				m_bQuit = true;
+			}
+			else if( e.type == SDL_KEYDOWN) {
+				KeyEvent(&e);
 			}
 		}
 		else {

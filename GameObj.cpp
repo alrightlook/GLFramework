@@ -9,6 +9,15 @@ GameObj::~GameObj()
 {
 
 }
+void GameObj::KeyEvent(SDL_Event* e)
+{
+	if(e == 0) {
+		return ;
+	}
+	if(e->key.keysym.sym == SDLK_ESCAPE) {
+		Quit();
+	}
+}
 
 bool GameObj::Init(const char* title, int x, int y, int w, int h, Uint32 flags)
 {

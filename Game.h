@@ -14,8 +14,10 @@ class Game
 
 		virtual bool Init(const char* title, int x ,int y, int w, int h, Uint32 flags);
 		virtual void SetPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+		virtual void KeyEvent(SDL_Event* e);
 		virtual void SetCamera(double posx, double posy, double posz, double dirx, double diry, double dirz, double upx, double upy, double upz);
 		void Run();
+		void Quit();
 		void Update();
 		virtual void Frame();
 	private:
