@@ -16,7 +16,7 @@ GameObj::~GameObj()
 void GameObj::LoadResource()
 {
 	GLfloat tri[9] = { 0.0f, 1.0f, 0.0f, -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f};
-	m_Mesh.setData(tri);
+	m_Mesh.setData(tri, 9);
 	m_Mesh.init();
 }
 void GameObj::KeyEvent(SDL_Event* e)

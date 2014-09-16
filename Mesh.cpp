@@ -3,14 +3,16 @@
 
 Mesh::Mesh()
 {
+	m_nVertexNum = 0;
 }
 
 Mesh::~Mesh()
 {
 }
 
-void Mesh::setData(GLfloat* pdata)
+void Mesh::setData(GLfloat* pdata,int num)
 {
+	m_nVertexNum = num;
 	m_pData = pdata;
 }
 
@@ -22,8 +24,7 @@ void Mesh::init()
 	glGenBuffers(1, &m_vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
 
-	std::cout<<"Null"<<std::endl;
-	glBufferData(GL_ARRAY_BUFFER, 9*sizeof(GLfloat), m_pData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, m_nVertexNum*sizeof(GLfloat), m_pData, GL_STATIC_DRAW);
 
 	glVertexAttribPointer((GLuint)0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
