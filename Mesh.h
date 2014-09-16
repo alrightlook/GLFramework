@@ -8,11 +8,14 @@ class Mesh
 		~Mesh();
 		void init();
 		void setData(GLfloat* pdata, int num);
+		void setColor(GLfloat* pdata, int num);
 		void draw();
 	private:
 		int m_nVertexNum;
+		int m_nColorNum;
 		GLuint m_vboId;
 		GLuint m_vaoId;
 		GLfloat* m_pData;
+		GLfloat* m_pColor;
 };
 #endif

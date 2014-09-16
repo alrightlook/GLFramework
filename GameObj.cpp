@@ -16,6 +16,9 @@ GameObj::~GameObj()
 void GameObj::LoadResource()
 {
 	GLfloat tri[9] = { 0.0f, 1.0f, 0.0f, -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f};
+	GLfloat col[9] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f};
+
+	m_Mesh.setColor(col, 9);
 	m_Mesh.setData(tri, 9);
 	m_Mesh.init();
 }
