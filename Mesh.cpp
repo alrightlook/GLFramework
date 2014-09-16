@@ -3,13 +3,12 @@
 
 Mesh::Mesh()
 {
+	m_pColor = 0;
 	m_nVertexNum = 0;
 }
 
 Mesh::~Mesh()
 {
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void Mesh::setColor(GLfloat* pdata, int num)
@@ -26,33 +25,27 @@ void Mesh::setData(GLfloat* pdata,int num)
 
 void Mesh::init()
 {
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+	glGenBuffers(1, &m_vboId);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
+	glBufferData(GL_ARRAY_BUFFER, m_nVertexNum*sizeof(GLfloat), m_pData, GL_STATIC_DRAW);
+
+	glGenBuffers(1, &m_colorId);
+	glBindBuffer(GL_ARRAY_BUFFER, m_colorId);
+	glBufferData(GL_ARRAY_BUFFER, m_nColorNum * sizeof(GLfloat), m_pColor, GL_STATIC_DRAW);
 
 	glGenVertexArrays(1, &m_vaoId);
 	glBindVertexArray(m_vaoId);
-
-	glGenBuffers(1, &m_vboId);
-	glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
-
-	glBufferData(GL_ARRAY_BUFFER, (m_nColorNum + m_nVertexNum)*sizeof(GLfloat), 0, GL_STATIC_DRAW);
-
-	glBufferSubData(GL_ARRAY_BUFFER, 0, m_nVertexNum*sizeof(GLfloat), m_pData);
-	glBufferSubData(GL_ARRAY_BUFFER, m_nVertexNum*sizeof(GLfloat), (m_nColorNum + m_nVertexNum) * sizeof(GLfloat), m_pColor);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,0, 0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glBindVertexArray(0);
-
-	delete[] m_pData;
-	m_pData = 0;
 }
 
 void Mesh::draw()
 {
-	glBindVertexArray(m_vaoId);
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vboId);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,0, 0);
+
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, m_colorId);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-	glBindVertexArray(0);
 }

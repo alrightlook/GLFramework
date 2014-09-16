@@ -16,11 +16,14 @@ GameObj::~GameObj()
 void GameObj::LoadResource()
 {
 	GLfloat tri[9] = { 0.0f, 1.0f, 0.0f, -1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f};
-	GLfloat col[9] = { 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f};
+	GLfloat col[9] = { 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f};
 
 	m_Mesh.setColor(col, 9);
 	m_Mesh.setData(tri, 9);
 	m_Mesh.init();
+	m_Shader.load("triangleShader.vs",GL_VERTEX_SHADER);	
+	m_Shader.load("triangleShader.fs", GL_FRAGMENT_SHADER);
+	m_Shader.bind();
 }
 void GameObj::KeyEvent(SDL_Event* e)
 {

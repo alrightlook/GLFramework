@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Mesh.h"
 #include <GL/glew.h>
+#include "Shader.h"
 
 class GameObj :public Game
 {
@@ -18,5 +19,6 @@ class GameObj :public Game
 		void Frame();
 	private:
 		Mesh m_Mesh;
+		Shader m_Shader;
 };
 #endif

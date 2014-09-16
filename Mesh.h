@@ -14,6 +14,7 @@ class Mesh
 		int m_nVertexNum;
 		int m_nColorNum;
 		GLuint m_vboId;
+		GLuint m_colorId;
 		GLuint m_vaoId;
 		GLfloat* m_pData;
 		GLfloat* m_pColor;
